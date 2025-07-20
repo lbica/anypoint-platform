@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="faac7997-7ac9-4d41-a806-6e60dc12ab75" >
+		<db:generic-connection url="jdbc:snowflake://DBDFXIZ-AP38120.snowflakecomputing.com" driverClassName="net.snowflake.client.jdbc.SnowflakeDriver" user="LAURENTIUMBICA" password="1234512345aA!1" />
+	</db:config>
+	<flow name="library-implFlow" doc:id="eaf659dd-e296-4396-835b-34dd887f0bf6" >
+		<db:select doc:name="Select" doc:id="327cc46a-6db2-49dd-be81-42a1f16258fd" config-ref="Database_Config"/>
+	</flow>
+</mule>

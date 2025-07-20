@@ -1,0 +1,4 @@
+db:
+  host: uat-db.company.com
+  user: uat_user
+  password: secure_pass

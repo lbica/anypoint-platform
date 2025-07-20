@@ -1,0 +1,4 @@
+db:
+  host: prod-db.company.com
+  user: prod_user
+  password: secure_pass

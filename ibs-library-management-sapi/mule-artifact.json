@@ -1,6 +1,7 @@
 {
-  "minMuleVersion": "4.9.0",
-  "javaSpecificationVersions": [
-    "17"
-  ]
+    "requiredProduct": "MULE",
+    "minMuleVersion": "4.9.0",
+    "javaSpecificationVersions": ["17"],
+    "secureProperties": ["db.password"],
+    "properties": {"config.resources": "config/application-${mule.env}.yaml"}
 }
