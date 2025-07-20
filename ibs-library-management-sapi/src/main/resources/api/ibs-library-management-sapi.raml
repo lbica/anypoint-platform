@@ -1,0 +1,75 @@
+#%RAML 1.0
+title: Ibs-Library-Management-Sapi
+version: 1.0
+baseUri: www.test.com
+mediaType: 
+- application/json
+protocols:
+  - HTTP
+traits:
+  headerinfo: !include /exchange_modules/5f7aa9a4-8dd5-4ec6-9143-41bb4c79500a/common-headers-traits/1.0.0/common-headers-traits.raml
+  queryParams: !include /exchange_modules/5f7aa9a4-8dd5-4ec6-9143-41bb4c79500a/query-params-books-traits/1.0.0/query-params-books-traits.raml
+types:
+  404-error: !include datatypes/404-datatype.raml
+  getLibraries: !include datatypes/getLibraries-datatype.raml
+
+
+/Libraries:
+  get:
+    is:
+      - headerinfo
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/examples.json
+  /{LibraryId}:
+    get:
+      is:
+        - headerinfo
+      responses:
+        200:
+          body:
+            application/json:
+              type: getLibraries
+        404:
+          body:
+            application/json:
+              type: 404-error
+              
+/Books:
+  post:
+    is:
+      - headerinfo
+      - queryParams
+    body:
+      application/json:
+        description: description 1 
+        properties:
+          libraryCode:
+            type: string
+            example:
+              "lcode1"
+          title:
+            type: string
+            example:
+              "title 1"
+          author:
+            type: string
+            example:
+              "author 1"
+    responses:
+      201:
+        body:
+          application/json:
+            properties:
+              message:
+                type: string
+                example: "Book added succefully"
+              bookCode:
+                type: string
+                example: "book1"
+      404:
+        body:
+          application/json:
+            type: 404-error

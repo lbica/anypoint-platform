@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:sockets="http://www.mulesoft.org/schema/mule/sockets"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/sockets http://www.mulesoft.org/schema/mule/sockets/current/mule-sockets.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ba7b4f7b-e386-42b0-9d68-29a2168c07df" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello-world-demoFlow" doc:id="e8576994-a813-46b6-951b-19889d6f6c95" >
+		<http:listener doc:name="Listener" doc:id="2daef494-6910-4eac-b9f7-07196e83a34e" config-ref="HTTP_Listener_config" path="/hidemo"/>
+		<logger level="INFO" doc:name="Logger" doc:id="7f23cae2-fe5e-4f04-a2ed-f9008b12e2b8" message="########### Before calling DataWeave ###########"/>
+		<ee:transform doc:name="Transform Message" doc:id="75921f38-f5f5-46f6-84e6-dc97b50660d9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"result": "Hello from my first MuleSoft flow"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="46249271-7634-4d51-a3b8-32b67c4aadb5" message="########### After calling DataWeave ###########"/>
+	</flow>
+</mule>

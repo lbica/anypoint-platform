@@ -1,0 +1,13 @@
+#%RAML 1.0 DataType
+
+type: array
+items:
+  type: object
+  properties:
+    libraryCode:
+      type: string
+      required: true
+    libraryBranch:
+      type: string
+      required: false
+example: !include ../examples/examples.json
