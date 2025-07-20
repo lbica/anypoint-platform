@@ -1,4 +1,10 @@
+http:
+  port: "8081"
+  path: "/api/*"
+  readtimeout: "3600"
+
 db:
-  host: prod-db.company.com
-  user: prod_user
-  password: secure_pass
+  url: jdbc:snowflake://DBDFXIZ-AP38120.snowflakecomputing.com
+  host: localhost
+  user: laurentiumbica
+  password: 1234512345aA!1
